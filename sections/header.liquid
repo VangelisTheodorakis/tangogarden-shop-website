@@ -28,6 +28,19 @@
     }
   {%- endif -%}
 
+  /* settings.logo_width is shared by mobile and desktop; restore the
+     larger mobile logo size independently of the smaller desktop value. */
+  @media screen and (max-width: 749px) {
+    .header__heading-logo-wrapper {
+      width: 100px;
+    }
+
+    .header__heading-logo {
+      width: 100px !important;
+      height: auto !important;
+    }
+  }
+
   {%- if section.settings.menu_type_desktop != "drawer" -%}
     @media screen and (min-width: 990px) {
       header-drawer {
