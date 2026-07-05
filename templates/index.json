@@ -15,7 +15,7 @@
         "heading_ke3URh": {
           "type": "heading",
           "settings": {
-            "heading": "Stop scrolling. Start Connecting",
+            "heading": "Stop Scrolling. Start Connecting — Argentine Tango Classes in Cologne",
             "heading_size": "h1"
           }
         },
@@ -32,7 +32,7 @@
         "text_PijgrJ"
       ],
       "custom_css": [
-        "@media (max-width: 768px) {.banner__heading {font-size: 6.2vw !important; white-space: nowrap !important; margin-bottom: 2px !important; line-height: 1 !important; letter-spacing: -0.5px !important; } .banner__text strong, .banner__text b {display: table !important; font-weight: 400 !important; margin: 0 auto 2px auto !important; line-height: 1.1 !important; text-align: center !important; }}"
+        "@media (max-width: 768px) {.banner__heading {font-size: 5.6vw !important; white-space: normal !important; margin-bottom: 6px !important; line-height: 1.15 !important; letter-spacing: -0.5px !important; } .banner__text strong, .banner__text b {display: table !important; font-weight: 400 !important; margin: 0 auto 2px auto !important; line-height: 1.1 !important; text-align: center !important; }}"
       ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
