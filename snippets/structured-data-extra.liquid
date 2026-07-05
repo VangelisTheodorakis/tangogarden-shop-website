@@ -1,0 +1,263 @@
+{%- comment -%}
+  Additional structured data: LocalBusiness (homepage) and Course (product
+  pages selling classes). Kept separate from the Organization/WebSite schema
+  in sections/header.liquid and from Shopify's auto-generated Product schema
+  in sections/main-product.liquid - this snippet only adds new schema nodes,
+  it does not replace either.
+{%- endcomment -%}
+
+{%- if request.page_type == 'index' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "SportsActivityLocation"],
+      "@id": "https://tangogarden.de/#localbusiness",
+      "name": "Tango Garden Cologne",
+      "url": "https://tangogarden.de",
+      "telephone": "+49 160 2368723",
+      "email": "hello@tangogarden.de",
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Thürmchenswall 21",
+        "postalCode": "50668",
+        "addressLocality": "Köln",
+        "addressRegion": "NRW",
+        "addressCountry": "DE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 50.9501585,
+        "longitude": 6.9535692
+      },
+      "sameAs": [
+        "https://www.instagram.com/tangogardencologne",
+        "https://www.facebook.com/tangogardencologne/"
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{%- if request.page_type == 'product' -%}
+  {%- liquid
+    assign course_type = blank
+    case product.handle
+      when 'the-sprouting-sessions-beginner-level-1-class-pass-general-admission', 'the-sprouting-sessions-beginner-level-1-class-pass-student-and-under-28-admission'
+        assign course_type = 'trial'
+      when 'the-sprouting-sessions-beginners-level-4-classes-pass-general-admission', 'the-sprouting-sessions-beginner-level-4-classes-pass-student-and-under-28-admission'
+        assign course_type = 'four_class'
+      when 'the-sprouting-sessions-beginner-level-full-course-pass-general-admission', 'the-sprouting-sessions-beginner-level-full-course-pass-student-and-under28-admission'
+        assign course_type = 'full_course'
+      when 'the-garden-practica-1-practica-pass-general-admission', 'the-garden-practica-1-practica-pass-door-only-student-and-under-28-admission'
+        assign course_type = 'practica'
+    endcase
+  -%}
+
+  {%- if course_type == 'trial' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "1-Class Trial: Try a Tango Class in Cologne",
+        "description": "One-time trial Argentine tango class in Cologne. No partner or experience needed.",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Tango Garden Cologne",
+          "url": "https://tangogarden.de",
+          "sameAs": [
+            "https://www.instagram.com/tangogardencologne",
+            "https://www.facebook.com/tangogardencologne/"
+          ]
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "Tango Garden Cologne",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Thürmchenswall 21",
+              "postalCode": "50668",
+              "addressLocality": "Köln",
+              "addressCountry": "DE"
+            }
+          }
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "General Admission",
+            "price": "18.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Student / Under-28",
+            "price": "15.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    </script>
+  {%- elsif course_type == 'four_class' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "4-Class Intro Pass: Tango Classes Cologne",
+        "description": "Four-class beginner block for learning Argentine tango in Cologne. No partner needed.",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Tango Garden Cologne",
+          "url": "https://tangogarden.de",
+          "sameAs": [
+            "https://www.instagram.com/tangogardencologne",
+            "https://www.facebook.com/tangogardencologne/"
+          ]
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "Tango Garden Cologne",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Thürmchenswall 21",
+              "postalCode": "50668",
+              "addressLocality": "Köln",
+              "addressCountry": "DE"
+            }
+          }
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "General Admission",
+            "price": "60.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Student / Under-28",
+            "price": "45.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    </script>
+  {%- elsif course_type == 'full_course' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Full Beginner Course: Tango Course Cologne",
+        "description": "Full Argentine tango beginner course in Cologne. No partner or prior experience required.",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Tango Garden Cologne",
+          "url": "https://tangogarden.de",
+          "sameAs": [
+            "https://www.instagram.com/tangogardencologne",
+            "https://www.facebook.com/tangogardencologne/"
+          ]
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "Tango Garden Cologne",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Thürmchenswall 21",
+              "postalCode": "50668",
+              "addressLocality": "Köln",
+              "addressCountry": "DE"
+            }
+          }
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "General Admission",
+            "price": "130.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Student / Under-28",
+            "price": "100.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    </script>
+  {%- elsif course_type == 'practica' -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Drop-In Practice: Tango Practica Cologne",
+        "description": "Open-level drop-in Argentine tango practica in Cologne. All levels welcome, no partner needed.",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Tango Garden Cologne",
+          "url": "https://tangogarden.de",
+          "sameAs": [
+            "https://www.instagram.com/tangogardencologne",
+            "https://www.facebook.com/tangogardencologne/"
+          ]
+        },
+        "hasCourseInstance": {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "courseWorkload": "Drop-in, no enrollment required",
+          "location": {
+            "@type": "Place",
+            "name": "Tango Garden Cologne",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Thürmchenswall 21",
+              "postalCode": "50668",
+              "addressLocality": "Köln",
+              "addressCountry": "DE"
+            }
+          }
+        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "General Admission",
+            "price": "10.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Student / Under-28",
+            "price": "8.00",
+            "priceCurrency": "EUR",
+            "category": "Paid",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
+    </script>
+  {%- endif -%}
+{%- endif -%}
