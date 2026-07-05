@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_heQYHX": {
+      "type": "custom-liquid",
+      "name": "Enter The Garden Date Injection",
+      "settings": {
+        "custom_liquid": "{% assign enter_the_garden_ref = all_products['enter-the-garden-general-admission'] %}\n\n<template id=\"enter-the-garden-date-template\">\n  {%- render 'date-logic', \n    start_list: enter_the_garden_ref.metafields.custom.event_start, \n    end_list: enter_the_garden_ref.metafields.custom.event_end,\nshow_mode:\"first\"\n-%}\n\n</template>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    const placeholder = document.getElementById('enter-the-garden-date-placeholder');\n    const template = document.getElementById('enter-the-garden-date-template');\n    if (placeholder && template) {\n      placeholder.innerHTML = template.innerHTML;\n    }\n  });\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_HqNmew": {
+      "type": "custom-liquid",
+      "name": "Practica Dates Injection",
+      "settings": {
+        "custom_liquid": "{% assign practica_ref = all_products['the-garden-practica-1-practica-pass-general-admission'] %}\n\n<template id=\"practica-date-template\">\n  {%- render 'date-logic', \n    start_list: practica_ref.metafields.custom.event_start, \n    end_list: practica_ref.metafields.custom.event_end ,\nshow_mode:\"closest\"\n-%}\n\n</template>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    const placeholder = document.getElementById('practica-date-placeholder');\n    const template = document.getElementById('practica-date-template');\n    if (placeholder && template) {\n      placeholder.innerHTML = template.innerHTML;\n    }\n  });\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_L73DpP": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "{%- assign regular_classes_ref = collections['regular-classes'] -%}\n\n<template id=\"regular-classes-date-template\">\n  {%- render 'date-logic', \n    start_list: regular_classes_ref.metafields.custom.event_start, \n    end_list: regular_classes_ref.metafields.custom.event_end,\nshow_mode: \"first\"\n \n-%}\n\n</template>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    const placeholder = document.getElementById('regular-classes-date-placeholder');\n    const template = document.getElementById('regular-classes-date-template');\n    if (placeholder && template) {\n      placeholder.innerHTML = template.innerHTML;\n    }\n  });\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_heQYHX",
+    "custom_liquid_HqNmew",
+    "custom_liquid_L73DpP"
+  ]
+}

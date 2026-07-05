@@ -1,0 +1,121 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Subscribe to our emails",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Subscribe to our mailing list for insider news, product launches, and more.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "padding_top": 36,
+        "padding_bottom": 44
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "image_JpyeAc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/light_text_logo-cropped.svg",
+            "image_width": 210,
+            "alignment": "center"
+          }
+        },
+        "link_list_gPP9zE": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Connect",
+            "menu": "legal-copy"
+          }
+        },
+        "link_list_XGe6nc": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Legal",
+            "menu": "legal"
+          }
+        }
+      },
+      "block_order": [
+        "image_JpyeAc",
+        "link_list_gPP9zE",
+        "link_list_XGe6nc"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "newsletter_enable": false,
+        "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": false,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": true,
+        "payment_enable": false,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 40,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_A73zAy": {
+      "type": "custom-liquid",
+      "name": "Payment Options",
+      "settings": {
+        "custom_liquid": "<div class=\"ux-trust-container\">\n  <div class=\"ux-trust-wrapper\">\n    <span class=\"ux-trust-label\">Guaranteed safe checkout</span>\n    <div class=\"ux-badge-grid\">\n      {{ 'visa' | payment_type_svg_tag: class: 'ux-badge' }}\n      {{ 'master' | payment_type_svg_tag: class: 'ux-badge' }}\n      {{ 'apple_pay' | payment_type_svg_tag: class: 'ux-badge' }}\n      {{ 'google_pay' | payment_type_svg_tag: class: 'ux-badge' }}\n    </div>\n  </div>\n</div>\n\n<style>\n  .ux-trust-container {\n    width: 100%;\n    margin: 0;\n    display: flex;\n    justify-content: center; /* Centers the whole block in the sidebar */\n  }\n\n  .ux-trust-wrapper {\n    display: flex;\n    flex-direction: column;\n    align-items: center; /* Centers text and badges relative to each other */\n    gap: 12px;\n    padding: 20px;\n    border: 1px solid #ebebeb;\n    border-radius: 12px;\n    background-color: #f9f9f9;\n    max-width: 340px; /* Prevents stretching too wide on desktop */\n    width: 100%;\n  }\n\n  .ux-trust-label {\n    font-size: 11px;\n    text-transform: uppercase;\n    letter-spacing: 0.12em;\n    color: #888;\n    font-weight: 600;\n    text-align: center;\n  }\n\n  .ux-badge-grid {\n    display: flex;\n    justify-content: center;\n    flex-wrap: wrap;\n    gap: 10px;\n  }\n\n  .ux-badge {\n    width: 44px;\n    height: 28px;\n    background: #fff;\n    border-radius: 6px;\n    padding: 4px;\n    box-shadow: 0 2px 4px rgba(0,0,0,0.04);\n    transition: transform 0.2s ease-in-out;\n  }\n\n  /* Hover effect for a high-end feel */\n  .ux-badge:hover {\n    transform: translateY(-2px);\n  }\n\n  /* Mobile: Maintain Centering */\n  @media (max-width: 749px) {\n    .ux-trust-container {\n      margin: 24px 0;\n    }\n    .ux-trust-wrapper {\n      padding: 16px;\n      max-width: 100%; /* Allows it to feel native on mobile */\n    }\n    .ux-badge {\n      width: 40px;\n      height: 26px;\n    }\n  }\n</style>",
+        "color_scheme": "scheme-4",
+        "padding_top": 4,
+        "padding_bottom": 4
+      }
+    },
+    "custom_liquid_xJ4NB8": {
+      "type": "custom-liquid",
+      "name": "Coryright footer",
+      "settings": {
+        "custom_liquid": "<style>\n  .tango-footer-banner {\n    padding: 1rem 0;\n    text-align: center;\n    color: rgb(var(--color-foreground));\n    opacity: 0.8;\n  }\n\n  .tango-footer-banner p {\n    font-size: 0.9rem;\n    letter-spacing: 0.05rem;\n    margin: 0.5rem 0;\n    text-transform: uppercase;\n  }\n\n  .tango-heart {\n    color: #a93226;\n    display: inline-block;\n    padding: 0 4px;\n  }\n\n  .tango-ai-tag {\n    font-style: italic;\n    opacity: 0.7;\n  }\n</style>\n\n<div class=\"tango-footer-banner\">\n  <p>&copy; 2026 Tango Garden Cologne</p>\n\n  <p>\n    All prices are final prices. No VAT charged according to §19 UStG.<br>\n    Alle Preise sind Endpreise. Gemäß §19 UStG wird keine Umsatzsteuer berechnet.\n  </p>\n\n  <p class=\"tango-ai-tag\">\n    Made with love <span class=\"tango-heart\">♥</span> and AI ✨\n  </p>\n</div>",
+        "color_scheme": "scheme-4",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "newsletter",
+    "footer",
+    "custom_liquid_A73zAy",
+    "custom_liquid_xJ4NB8"
+  ]
+}

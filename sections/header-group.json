@@ -1,0 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement_bar_d8RqkX": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_igDfTb": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        },
+        "announcement_JqCYbq": {
+          "type": "announcement",
+          "settings": {
+            "text": "This is a test",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_igDfTb",
+        "announcement_JqCYbq"
+      ],
+      "disabled": true,
+      "name": "t:sections.announcement-bar.presets.name",
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "custom_liquid_rUNMPg": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Discount-Banner",
+      "settings": {
+        "custom_liquid": "<!-- BANNER: Paste this entire block once -->\n    <div id=\"tango-young-banner\">\n  <div class=\"tango-young-banner-inner\">\n    <span class=\"tango-badge\">\n      Student or Under 28?\n    </span>\n\n    <span class=\"tango-young-banner-cta\">\n      <strong> Get 20% off</strong> all Classes & Events\n    </span>\n\n    <div class=\"tango-young-code-banner\">\n      <span class=\"tango-young-code-banner-text\">Code:</span>\n      <strong class=\"tango-young-banner-discount-code\">#UNDER28</strong>\n      \n      <!-- Copy Button -->\n      <button \n        id=\"copy-promo-code\"\n        onclick=\"copyPromoCode()\"\n        style=\"background: none; border: none; padding: 4px 6px; cursor: pointer; display: inline-flex; align-items: center; transition: all 0.2s; margin-left: 4px;\"\n        aria-label=\"Copy promo code\"\n        title=\"Copy code\"\n      >\n        <!-- Two Squares Icon (default state) -->\n        <svg id=\"copy-icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" style=\"opacity: 0.8;\">\n          <rect x=\"2\" y=\"5\" width=\"9\" height=\"9\" rx=\"1.5\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n          <path d=\"M5 5V3.5C5 2.67157 5.67157 2 6.5 2H12.5C13.3284 2 14 2.67157 14 3.5V9.5C14 10.3284 13.3284 11 12.5 11H11\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n        </svg>\n        \n        <!-- Checkmark Icon (success state) -->\n        <svg id=\"check-icon\" width=\"16\" height=\"16\" viewBox=\"0 0 16 16\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" style=\"display: none; color: #4ade80;\">\n          <path d=\"M3 8.5L6.5 12L13 4\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n        </svg>\n      </button>\n    </div>\n  </div>\n</div>\n\n<style>\n  #copy-promo-code:hover {\n    opacity: 1 !important;\n  }\n  \n  #copy-promo-code:active {\n    transform: scale(0.95);\n  }\n  \n  #copy-promo-code:focus {\n    outline: 2px solid rgba(255, 255, 255, 0.5);\n    outline-offset: 2px;\n    border-radius: 4px;\n  }\n</style>\n\n<script>\n  function copyPromoCode() {\n    const code = '#UNDER28';\n    const button = document.getElementById('copy-promo-code');\n    const copyIcon = document.getElementById('copy-icon');\n    const checkIcon = document.getElementById('check-icon');\n    \n    // Copy to clipboard\n    navigator.clipboard.writeText(code).then(function() {\n      // Show success state\n      copyIcon.style.display = 'none';\n      checkIcon.style.display = 'block';\n      button.setAttribute('title', 'Copied!');\n      \n      // Reset after 2 seconds\n      setTimeout(function() {\n        copyIcon.style.display = 'block';\n        checkIcon.style.display = 'none';\n        button.setAttribute('title', 'Copy code');\n      }, 2000);\n    }).catch(function(err) {\n      // Fallback for older browsers\n      const textArea = document.createElement('textarea');\n      textArea.value = code;\n      textArea.style.position = 'fixed';\n      textArea.style.opacity = '0';\n      document.body.appendChild(textArea);\n      textArea.select();\n      \n      try {\n        document.execCommand('copy');\n        copyIcon.style.display = 'none';\n        checkIcon.style.display = 'block';\n        button.setAttribute('title', 'Copied!');\n        \n        setTimeout(function() {\n          copyIcon.style.display = 'block';\n          checkIcon.style.display = 'none';\n          button.setAttribute('title', 'Copy code');\n        }, 2000);\n      } catch (err) {\n        console.error('Failed to copy code');\n      }\n      \n      document.body.removeChild(textArea);\n    });\n  }\n</script>\n\n  <!-- END BANNER -->",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [],
+      "settings": {
+        "logo_position": "top-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "always",
+        "show_line_separator": false,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_customer_avatar": false,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_d8RqkX",
+    "custom_liquid_rUNMPg",
+    "header"
+  ]
+}

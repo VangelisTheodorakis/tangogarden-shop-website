@@ -1,0 +1,55 @@
+{%- comment -%}
+  Accepts:
+  - start_list: Metafield list
+  - end_list: Metafield list
+  - show_mode: "first" or "closest" (defaults to "closest")
+{%- endcomment -%}
+
+{%- assign mode = show_mode | default: "closest" -%}
+{%- assign starts = start_list.value -%}
+{%- assign ends = end_list.value -%}
+{%- assign now_s = 'now' | date: '%s' | plus: 0 -%}
+{%- assign found_event = false -%}
+
+<div class="event-schedule-container">
+  {%- if starts != blank and starts.size > 0 -%}
+    
+    {%- if mode == "first" -%}
+      {%- comment -%} MODE: ALWAYS SHOW THE VERY FIRST ITEM {%- endcomment -%}
+      {%- assign display_start = starts[0] -%}
+      {%- assign display_end = ends[0] -%}
+      {%- assign found_event = true -%}
+
+    {%- else -%}
+      {%- comment -%} MODE: FIND THE CLOSEST UPCOMING EVENT {%- endcomment -%}
+      {%- for start_date in starts -%}
+        {%- assign end_s = ends[forloop.index0] | date: '%s' | plus: 0 -%}
+        {%- if end_s > now_s -%}
+          {%- assign display_start = start_date -%}
+          {%- assign display_end = ends[forloop.index0] -%}
+          {%- assign found_event = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if found_event -%}
+      <div style="padding: 0.8rem 0;">
+        <strong>{{ display_start | date: "%a, %d/%m/%Y" }}</strong><br>
+        {{ display_start | date: "%H:%M" }} – {{ display_end | date: "%H:%M" }}
+        
+        {%- assign s_time = display_start | date: '%s' | plus: 0 -%}
+        {%- assign e_time = display_end | date: '%s' | plus: 0 -%}
+        
+        {%- if now_s > s_time and now_s < e_time -%}
+          <span class="badge" style="background: #d8572a; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.7em; margin-left: 10px; vertical-align: middle;">LIVE NOW</span>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      <p style="opacity: 0.7; font-style: italic;">No upcoming dates scheduled (TBA)</p>
+    {%- endif -%}
+
+  {%- else -%}
+    <p style="opacity: 0.7; font-style: italic;">New dates coming soon (TBA)</p>
+  {%- endif -%}
+</div>
