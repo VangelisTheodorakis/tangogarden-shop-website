@@ -1,0 +1,89 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "pathway_cards_start_here": {
+      "type": "pathway-cards",
+      "name": "Three Ways to Enter the Garden",
+      "blocks": {
+        "card_door1": {
+          "type": "pathway_card",
+          "settings": {
+            "featured": false,
+            "icon": "🌱",
+            "title": "Enter the Garden",
+            "description": "One-time event for those who want to try without commitment.",
+            "features": "One-time 1.5 hour session\nConnect with new people\nDrinks & snacks included",
+            "date_reference_type": "product",
+            "date_reference_handle": "enter-the-garden-general-admission",
+            "date_show_mode": "first",
+            "date_label": "Next Event",
+            "price": "10€ or 8€ *",
+            "button_text": "Start small →",
+            "button_url": "/products/enter-the-garden-general-admission"
+          }
+        },
+        "card_door2": {
+          "type": "pathway_card",
+          "settings": {
+            "featured": true,
+            "icon": "🌿",
+            "title": "Regular classes",
+            "description": "A steady weekly rhythm for optimal learning and growth.",
+            "features": "10 weekly 1.5 hour sessions\nCommunity events & Rituals\nCover missed classes for free",
+            "date_reference_type": "collection",
+            "date_reference_handle": "regular-classes",
+            "date_show_mode": "closest",
+            "date_label": "Next Class (Course open until 31/03)",
+            "price": "130€ or 100€ *",
+            "price_note": "for the full package",
+            "button_text": "Commit to learning →",
+            "button_url": "/products/the-sprouting-sessions-beginner-level-full-course-pass-general-admission",
+            "secondary_button_text": "or explore our flexible bundles",
+            "secondary_button_url": "/collections"
+          }
+        },
+        "card_door3": {
+          "type": "pathway_card",
+          "settings": {
+            "featured": false,
+            "icon": "🌳",
+            "title": "Weekly Practicas",
+            "description": "A relaxed space to practice, connect, and grow together.",
+            "features": "Weekly 2.5 hour guided sessions\nOpen-level and double-role\nCommunity-focused atmosphere",
+            "date_reference_type": "product",
+            "date_reference_handle": "the-garden-practica-1-practica-pass-general-admission",
+            "date_show_mode": "closest",
+            "date_label": "Next Practica",
+            "price": "10€ or 8€ *",
+            "button_text": "Accelerate your growth →",
+            "button_url": "/products/the-garden-practica-1-practica-pass-general-admission"
+          }
+        }
+      },
+      "block_order": ["card_door1", "card_door2", "card_door3"],
+      "settings": {
+        "eyebrow": "How to Start",
+        "heading": "Three Ways to Enter the Garden",
+        "subheading": "Choose what feels right for where you are.",
+        "price_footnote": "* for students and anyone who is 28 years old or less",
+        "help_heading": "Still wandering?",
+        "help_text": "Every dancer starts somewhere different. If you're not sure where you fit, we're happy to guide you personally.",
+        "details_text": "See all details",
+        "details_url": "/collections/all",
+        "whatsapp_text": "Chat on WhatsApp",
+        "whatsapp_number": "491602368723",
+        "whatsapp_message": "Hi! I'm not sure which option is right for me..."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "pathway_cards_start_here"
+  ]
+}

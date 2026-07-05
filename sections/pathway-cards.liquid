@@ -1,0 +1,387 @@
+<section id="three-ways-to-enter" class="pathway-cards-section" style="background: white; padding: 20px 20px;">
+
+  <div class="container" style="max-width: 1200px; margin: 0 auto;">
+
+    <div style="text-align: center; margin-bottom: 80px;">
+      <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #4E5D22; font-weight: 600; margin-bottom: 20px;">
+        {{ section.settings.eyebrow }}
+      </div>
+      <h2 style="font-size: 42px; font-weight: 700; color: #4E5D22; margin-bottom: 25px; line-height: 1.2;">
+        {{ section.settings.heading }}
+      </h2>
+      <p style="font-size: 20px; color: #666; max-width: 700px; margin: 0 auto; line-height: 1.6;">
+        {{ section.settings.subheading }}
+      </p>
+    </div>
+
+    <div class="garden-pathways-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 30px">
+      {%- for block in section.blocks -%}
+        {%- assign card = block.settings -%}
+        {%- assign date_ref = null -%}
+        {%- if card.date_reference_type == 'collection' -%}
+          {%- assign date_ref = collections[card.date_reference_handle] -%}
+        {%- else -%}
+          {%- assign date_ref = all_products[card.date_reference_handle] -%}
+        {%- endif -%}
+
+        <div class="pathway-card{% if card.featured %} featured{% endif %}" {{ block.shopify_attributes }} style="{% if card.featured %}background: linear-gradient(135deg, #4E5D22 0%, #3d6b1f 100%); box-shadow: 0 10px 40px rgba(45,80,22,0.3);{% else %}background: #F3EDE1;{% endif %} border-radius: 16px; padding: 45px 35px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; display: flex; flex-direction: column;">
+
+          <div style="position: absolute; top: -15px; right: -15px; width: 80px; height: 80px; background: {% if card.featured %}rgba(255,255,255,0.1){% else %}rgba(45,80,22,0.08){% endif %}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: 700; color: {% if card.featured %}rgba(255,255,255,0.2){% else %}rgba(45,80,22,0.15){% endif %};">
+            {{ forloop.index }}
+          </div>
+
+          <div style="width: 70px; height: 70px; background: {% if card.featured %}rgba(255,255,255,0.15){% else %}white{% endif %}; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 32px;{% if card.featured %} backdrop-filter: blur(10px);{% else %} box-shadow: 0 4px 15px rgba(0,0,0,0.08);{% endif %}">
+            {{ card.icon }}
+          </div>
+
+          <h3 style="font-size: 26px; color: {% if card.featured %}white{% else %}#4E5D22{% endif %}; margin-bottom: 15px; font-weight: 700;">
+            {{ card.title }}
+          </h3>
+
+          <p style="font-size: 16px; line-height: 1.7; color: {% if card.featured %}rgba(255,255,255,0.9){% else %}#666{% endif %}; margin-bottom: 25px;">
+            {{ card.description }}
+          </p>
+
+          <ul style="list-style: none; padding: 0; margin: 0 0 30px 0; text-align: left;">
+            {%- assign features = card.features | newline_to_br | strip_newlines | split: '<br />' -%}
+            {%- for feature in features -%}
+              {%- assign feature = feature | strip -%}
+              {%- if feature != blank -%}
+                <li style="font-size: 14px; color: {% if card.featured %}rgba(255,255,255,0.9){% else %}#555{% endif %}; margin-bottom: 10px; padding-left: 25px; position: relative;">
+                  <span style="position: absolute; left: 0; color: {% if card.featured %}white{% else %}#4E5D22{% endif %}; font-weight: 700;">✓</span>
+                  {{ feature }}
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+
+          <div style="margin-bottom: 25px; padding: 12px; background: {% if card.featured %}rgba(255,255,255,0.1){% else %}rgba(45,80,22,0.05){% endif %}; border-radius: 8px; display: flex; align-items: center; gap: 8px;{% if card.featured %} border: 1px solid rgba(255,255,255,0.2);{% endif %}">
+            <span style="font-size: 16px;">🗓️</span>
+            <div style="text-align: left;">
+              <span style="display: block; font-size: 11px; text-transform: uppercase; color: {% if card.featured %}rgba(255,255,255,0.8){% else %}#4E5D22{% endif %}; font-weight: 700;">{{ card.date_label }}</span>
+              <span style="font-size: 15px; font-weight: 600; color: {% if card.featured %}white{% else %}#4E5D22{% endif %};">
+                {%- render 'date-logic',
+                  start_list: date_ref.metafields.custom.event_start,
+                  end_list: date_ref.metafields.custom.event_end,
+                  show_mode: card.date_show_mode
+                -%}
+              </span>
+            </div>
+          </div>
+
+          <div style="border-top: 2px solid {% if card.featured %}rgba(255,255,255,0.2){% else %}rgba(45,80,22,0.1){% endif %}; flex-grow: 1; display: flex; flex-direction: column;">
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+              <p style="font-size: 32px; font-weight: 700; color: {% if card.featured %}white{% else %}#4E5D22{% endif %}; margin-bottom: 15px; line-height: 1.1;">
+                {{ card.price }}
+                {%- if card.price_note != blank -%}
+                  <span style="font-size: 16px; font-weight: 400; display: block; margin-top: 5px;">{{ card.price_note }}</span>
+                {%- endif -%}
+              </p>
+            </div>
+            {%- if card.featured -%}
+              <a href="{{ card.button_url }}" style="display: block; background: white; color: #4E5D22; padding: 15px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; margin-bottom: 20px;">
+                {{ card.button_text }}
+              </a>
+              {%- if card.secondary_button_text != blank -%}
+                <a href="{{ card.secondary_button_url }}" style="background: transparent; border: 2px solid white; color: white; padding: 10px 8px; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: 600;"> {{ card.secondary_button_text }} </a>
+              {%- endif -%}
+            {%- else -%}
+              <a href="{{ card.button_url }}" style="display: block; background: white; color: #4E5D22; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; border: 2px solid #4E5D22; transition: all 0.3s ease;">
+                {{ card.button_text }}
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div style="text-align: center;">
+      <p style="margin: 0px;"><span>{{ section.settings.price_footnote }}</span></p>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 50px 30px; background: #F9F7F2; border: 1px solid rgba(45,80,22,0.1); border-radius: 20px;">
+      <h4 style="font-size: 22px; color: #4E5D22; margin-bottom: 12px; font-weight: 700;">
+        {{ section.settings.help_heading }}
+      </h4>
+      <p style="font-size: 16px; line-height: 1.6; color: #666; max-width: 500px; margin: 0 auto 30px;">
+        {{ section.settings.help_text }}
+      </p>
+      <div style="display: flex; gap: 15px; justify-content: center; align-items: center; flex-direction: row; flex-wrap: wrap;">
+        <a href="{{ section.settings.details_url }}" class="safety-btn-info" style="display: inline-flex; align-items: center; padding: 12px 24px; color: #4E5D22; font-weight: 600; text-decoration: none; font-size: 15px; border-radius: 30px; background: rgba(45,80,22,0.05); border: 1px solid rgba(45,80,22,0.1); transition: all 0.2s ease;">
+          <span style="margin-right: 8px;">📋</span> {{ section.settings.details_text }}
+        </a>
+        <a href="https://wa.me/{{ section.settings.whatsapp_number }}?text={{ section.settings.whatsapp_message | url_encode }}"
+           class="safety-btn-primary"
+           style="display: inline-flex; align-items: center; padding: 12px 24px; background: #4E5D22; color: white; font-weight: 600; text-decoration: none; font-size: 15px; border-radius: 30px; box-shadow: 0 4px 12px rgba(45,80,22,0.2); transition: all 0.3s ease; border: 1px solid transparent;">
+          <span style="margin-right: 8px;">💬</span> {{ section.settings.whatsapp_text }}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .pathway-card:not(.featured):hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  }
+
+  .pathway-card.featured:hover {
+    box-shadow: 0 20px 50px rgba(45,80,22,0.4);
+    transform: translateY(-8px);
+  }
+
+  .pathway-card a:hover {
+    background: #4E5D22 !important;
+    color: white !important;
+  }
+
+  .pathway-card.featured a:hover {
+    background: rgba(255,255,255,0.15) !important;
+    color: white !important;
+    border-color: white !important;
+  }
+
+  @media (max-width: 968px) {
+    #three-ways-to-enter {
+      padding: 80px 20px !important;
+    }
+
+    #three-ways-to-enter h2 {
+      font-size: 32px !important;
+    }
+
+    .garden-pathways-grid {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+
+    .pathway-card h3 {
+      font-size: 24px !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pathway-card {
+      padding: 35px 20px !important;
+    }
+
+    .pathway-card a {
+      font-size: 15px !important;
+      padding: 12px 15px !important;
+    }
+
+    .pathway-card p {
+      font-size: 15px !important;
+    }
+  }
+
+  .safety-btn-info:hover {
+    background: rgba(45,80,22,0.12) !important;
+    border-color: rgba(45,80,22,0.3) !important;
+    transform: translateY(-1px);
+  }
+
+  .safety-btn-primary:hover {
+    background: #3d6b1f !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45,80,22,0.3) !important;
+  }
+
+  .safety-btn-info:active, .safety-btn-primary:active {
+    transform: translateY(0);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pathway cards",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "How to Start"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Three Ways to Enter the Garden"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Choose what feels right for where you are."
+    },
+    {
+      "type": "text",
+      "id": "price_footnote",
+      "label": "Price footnote",
+      "default": "* for students and anyone who is 28 years old or less"
+    },
+    {
+      "type": "header",
+      "content": "Help banner"
+    },
+    {
+      "type": "text",
+      "id": "help_heading",
+      "label": "Help heading",
+      "default": "Still wandering?"
+    },
+    {
+      "type": "textarea",
+      "id": "help_text",
+      "label": "Help text",
+      "default": "Every dancer starts somewhere different. If you're not sure where you fit, we're happy to guide you personally."
+    },
+    {
+      "type": "text",
+      "id": "details_text",
+      "label": "Details button text",
+      "default": "See all details"
+    },
+    {
+      "type": "url",
+      "id": "details_url",
+      "label": "Details button link"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_text",
+      "label": "WhatsApp button text",
+      "default": "Chat on WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "WhatsApp number",
+      "info": "Digits only, with country code (e.g. 491602368723)",
+      "default": "491602368723"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_message",
+      "label": "WhatsApp prefilled message",
+      "default": "Hi! I'm not sure which option is right for me..."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pathway_card",
+      "name": "Pathway card",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Highlight this card",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "🌱"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Enter the Garden"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features",
+          "info": "One per line"
+        },
+        {
+          "type": "select",
+          "id": "date_reference_type",
+          "label": "Date source type",
+          "options": [
+            { "value": "product", "label": "Product" },
+            { "value": "collection", "label": "Collection" }
+          ],
+          "default": "product"
+        },
+        {
+          "type": "text",
+          "id": "date_reference_handle",
+          "label": "Product or collection handle",
+          "info": "Handle to read event_start / event_end metafields from"
+        },
+        {
+          "type": "select",
+          "id": "date_show_mode",
+          "label": "Date display mode",
+          "options": [
+            { "value": "first", "label": "Always show first upcoming date" },
+            { "value": "closest", "label": "Show closest upcoming date" }
+          ],
+          "default": "closest"
+        },
+        {
+          "type": "text",
+          "id": "date_label",
+          "label": "Date label",
+          "default": "Next Event"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "10€ or 8€ *"
+        },
+        {
+          "type": "text",
+          "id": "price_note",
+          "label": "Price note (optional)"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Start small →"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "secondary_button_text",
+          "label": "Secondary button text (featured card only)"
+        },
+        {
+          "type": "url",
+          "id": "secondary_button_url",
+          "label": "Secondary button link (featured card only)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Pathway cards",
+      "blocks": [
+        { "type": "pathway_card" },
+        { "type": "pathway_card" },
+        { "type": "pathway_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
