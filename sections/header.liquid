@@ -28,17 +28,26 @@
     }
   {%- endif -%}
 
-  /* settings.logo_width is shared by mobile and desktop; restore the
-     larger mobile logo size independently of the smaller desktop value. */
-  @media screen and (max-width: 749px) {
-    .header__heading-logo-wrapper {
-      width: 100px;
-    }
+  .header__heading-logo-wrapper--icon-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: auto;
+  }
 
-    .header__heading-logo {
-      width: 100px !important;
-      height: auto !important;
-    }
+  .header__heading-logo-icon {
+    width: 36px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .header__heading-logo-text {
+    font-family: var(--font-heading-family);
+    font-size: 2rem;
+    font-weight: 600;
+    color: #4b5925;
+    white-space: nowrap;
+    line-height: 1;
   }
 
   {%- if section.settings.menu_type_desktop != "drawer" -%}
@@ -165,28 +174,17 @@
         <div class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-            {{
-              settings.logo
-              | image_url: width: 600
-              | image_tag:
-                class: 'header__heading-logo motion-reduce',
-                widths: widths,
-                height: logo_height,
-                width: settings.logo_width,
-                alt: logo_alt,
-                sizes: sizes,
-                preload: true
-            }}
-          </div>
-        {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
-        {%- endif -%}
+        <div class="header__heading-logo-wrapper header__heading-logo-wrapper--icon-text">
+          <img
+            src="{{ 'logo-icon.svg' | asset_url }}"
+            alt="{{ shop.name | escape }}"
+            width="36"
+            height="36"
+            class="header__heading-logo-icon motion-reduce"
+            loading="eager"
+          >
+          <span class="header__heading-logo-text">{{ shop.name }}</span>
+        </div>
       </a>
       {%- if request.page_type == 'index' -%}
         </div>
@@ -208,28 +206,17 @@
         <div class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-            {{
-              settings.logo
-              | image_url: width: 600
-              | image_tag:
-                class: 'header__heading-logo',
-                widths: widths,
-                height: logo_height,
-                width: settings.logo_width,
-                alt: logo_alt,
-                sizes: sizes,
-                preload: true
-            }}
-          </div>
-        {%- else -%}
-          <span class="h2">{{ shop.name }}</span>
-        {%- endif -%}
+        <div class="header__heading-logo-wrapper header__heading-logo-wrapper--icon-text">
+          <img
+            src="{{ 'logo-icon.svg' | asset_url }}"
+            alt="{{ shop.name | escape }}"
+            width="36"
+            height="36"
+            class="header__heading-logo-icon"
+            loading="eager"
+          >
+          <span class="header__heading-logo-text">{{ shop.name }}</span>
+        </div>
       </a>
       {%- if request.page_type == 'index' -%}
         </div>
