@@ -41,6 +41,27 @@
     flex-shrink: 0;
   }
 
+  /* Mobile keeps the original stacked icon+text logo; desktop uses the
+     compact icon + live-text row so the wordmark stays legible without
+     the stacked graphic's height cost on a wider header. */
+  .header__heading-logo-wrapper--mobile-only {
+    display: block;
+  }
+
+  .header__heading-logo-wrapper--desktop-only {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .header__heading-logo-wrapper--mobile-only {
+      display: none;
+    }
+
+    .header__heading-logo-wrapper--desktop-only {
+      display: flex;
+    }
+  }
+
   .header__heading-logo-text {
     font-family: var(--font-heading-family);
     font-size: 2rem;
@@ -174,7 +195,7 @@
         <div class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        <div class="header__heading-logo-wrapper header__heading-logo-wrapper--icon-text">
+        <div class="header__heading-logo-wrapper header__heading-logo-wrapper--icon-text header__heading-logo-wrapper--desktop-only">
           <img
             src="{{ 'logo-icon.svg' | asset_url }}"
             alt="{{ shop.name | escape }}"
@@ -185,6 +206,23 @@
           >
           <span class="header__heading-logo-text">{{ shop.name }}</span>
         </div>
+        {%- if settings.logo != blank -%}
+          <div class="header__heading-logo-wrapper header__heading-logo-wrapper--mobile-only">
+            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+            {%- assign mobile_logo_width = 100 -%}
+            {%- assign logo_height = mobile_logo_width | divided_by: settings.logo.aspect_ratio -%}
+            {{
+              settings.logo
+              | image_url: width: 300
+              | image_tag:
+                class: 'header__heading-logo motion-reduce',
+                height: logo_height,
+                width: mobile_logo_width,
+                alt: logo_alt,
+                preload: true
+            }}
+          </div>
+        {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
         </div>
@@ -206,7 +244,7 @@
         <div class="header__heading">
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-        <div class="header__heading-logo-wrapper header__heading-logo-wrapper--icon-text">
+        <div class="header__heading-logo-wrapper header__heading-logo-wrapper--icon-text header__heading-logo-wrapper--desktop-only">
           <img
             src="{{ 'logo-icon.svg' | asset_url }}"
             alt="{{ shop.name | escape }}"
@@ -217,6 +255,23 @@
           >
           <span class="header__heading-logo-text">{{ shop.name }}</span>
         </div>
+        {%- if settings.logo != blank -%}
+          <div class="header__heading-logo-wrapper header__heading-logo-wrapper--mobile-only">
+            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+            {%- assign mobile_logo_width = 100 -%}
+            {%- assign logo_height = mobile_logo_width | divided_by: settings.logo.aspect_ratio -%}
+            {{
+              settings.logo
+              | image_url: width: 300
+              | image_tag:
+                class: 'header__heading-logo',
+                height: logo_height,
+                width: mobile_logo_width,
+                alt: logo_alt,
+                preload: true
+            }}
+          </div>
+        {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
         </div>
