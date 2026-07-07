@@ -135,6 +135,16 @@
     border-color: white !important;
   }
 
+  /* "From €13 or €10/class *" is longer than the other cards' prices;
+     shrink slightly so it stays on one line instead of wrapping. Scoped
+     to desktop only - the existing @media (max-width: 480px) rule below
+     already sizes all card prices at 15px, which fits fine on mobile. */
+  @media (min-width: 481px) {
+    .pathway-card.featured p[style*="font-size: 32px"] {
+      font-size: 26px !important;
+    }
+  }
+
   @media (max-width: 968px) {
     #three-ways-to-enter {
       padding: 80px 20px !important;
